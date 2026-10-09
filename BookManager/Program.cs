@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using BookManager.Models;
 namespace BookManager
 {
     public class Program
