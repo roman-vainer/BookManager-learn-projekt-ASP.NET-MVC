@@ -1,8 +1,11 @@
 @model Book
+@{
+	ViewData["Title"] = "Delete Book";
+}
 
 <div class="row justify-content-center my-5">
 	<div class="col-md-6 col-lg-5">
-		<div class="border rounded-4 p-4 bg-secondary-subtle shadow-sm">
+		<div class="book-form border rounded-4 p-4 shadow-sm">
 			<h1 class="h3 text-center mb-3">Delete Book</h1>
 			<p class="text-center">Are you sure you want to delete <strong>@Model.Title</strong> by @Model.Author?</p>
 			<form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="text-center">

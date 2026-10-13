@@ -1,4 +1,7 @@
 @model Book
+@{
+	ViewData["Title"] = "Book Details";
+}
 
 <div class="container my-4">
 	<div class="card shadow-sm">
@@ -6,7 +9,10 @@
 			<div class="col-md-4 bg-body-tertiary d-flex align-items-center justify-content-center p-3">
 				@if (!string.IsNullOrWhiteSpace(Model.ImagePath))
 				{
-					<img src="@Model.ImagePath" class="img-fluid rounded" style="max-height: 28rem; object-fit: contain;" alt="Cover of @Model.Title" />
+					<div class="w-100 text-center">
+						<img src="@Model.ImagePath" class="img-fluid rounded" style="max-height: 28rem; object-fit: contain;" alt="Cover of @Model.Title" onerror="this.classList.add('d-none'); this.nextElementSibling.classList.remove('d-none');" />
+						<span class="text-body-secondary d-none">Cover image not found</span>
+					</div>
 				}
 				else
 				{
@@ -29,11 +35,11 @@
 						<dd class="col-sm-8">
 							@if (Model.IsAvailable)
 							{
-								<span class="badge text-bg-success">Available</span>
+								<span class="badge availability-available">Available</span>
 							}
 							else
 							{
-								<span class="badge text-bg-secondary">Not available</span>
+								<span class="badge availability-unavailable">Not available</span>
 							}
 						</dd>
 						<dt class="col-sm-4">Description</dt>

@@ -1,4 +1,90 @@
-﻿.book-form {
-    font-family: "Times New Roman", Times, serif;
-    
+﻿:root {
+    --app-bg: #f4f7fb;
+    --app-bg-soft: #ebf1f8;
+    --app-panel: #ffffff;
+    --app-border: #d4dde8;
+    --app-text: #172230;
+    --app-muted: #58677b;
+    --app-primary: #1757a6;
+    --app-primary-dark: #0e407d;
+    --app-accent: #0f766e;
+    --app-danger: #9f1239;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body.app-body {
+    background: linear-gradient(180deg, var(--app-bg-soft) 0%, var(--app-bg) 40%, var(--app-bg) 100%);
+    color: var(--app-text);
+    font-family: "IBM Plex Sans", "Segoe UI Variable", "Noto Sans", "Helvetica Neue", sans-serif;
+}
+
+.app-navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(3px);
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--app-text);
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+    color: var(--app-primary);
+}
+
+.app-shell {
+    min-height: calc(100vh - 145px);
+}
+
+.home-panel,
+.book-form,
+.card {
+    background-color: var(--app-panel);
+    border-color: var(--app-border);
+}
+
+.home-panel {
+    border: 1px solid var(--app-border);
+}
+
+.app-kicker {
+    color: var(--app-muted);
+    letter-spacing: 0.06em;
+}
+
+.card-title,
+h1,
+h2,
+h3 {
+    color: #112033;
+}
+
+.btn-primary {
+    background-color: var(--app-primary);
+    border-color: var(--app-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--app-primary-dark);
+    border-color: var(--app-primary-dark);
+}
+
+.availability-available {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.availability-unavailable {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.text-danger {
+    color: var(--app-danger) !important;
 }
