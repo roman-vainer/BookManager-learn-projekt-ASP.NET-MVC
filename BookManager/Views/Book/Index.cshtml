@@ -1,11 +1,13 @@
 @model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Books";
+}
 
 <div class="container my-4">
 	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1 class="mb-0">Books</h1>
+		<h1 class="mb-0">Book Overview</h1>
 		<div>
 			<a asp-action="Create" class="btn btn-primary">Add Book</a>
-			<a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Home</a>
 		</div>
 	</div>
 
@@ -23,19 +25,19 @@
 						<div class="card-body">
 							<h5 class="card-title">@book.Title</h5>
 							<h6 class="card-subtitle mb-2 text-body-secondary">@book.Author</h6>
-							<p class="card-text mb-1">@(string.IsNullOrWhiteSpace(book.Genre) ? "Genre not specified" : book.Genre)</p>
-							<p class="card-text mb-2">@(book.YearPublished?.ToString() ?? "Year unknown")</p>
+							<p class="card-text mb-1"><span class="text-body-secondary">Genre:</span> @(string.IsNullOrWhiteSpace(book.Genre) ? "Not specified" : book.Genre)</p>
+							<p class="card-text mb-2"><span class="text-body-secondary">Published:</span> @(book.YearPublished?.ToString() ?? "Unknown")</p>
 							@if (book.IsAvailable)
 							{
-								<span class="badge text-bg-success">Available</span>
+								<span class="badge availability-available">Available</span>
 							}
 							else
 							{
-								<span class="badge text-bg-secondary">Not available</span>
+								<span class="badge availability-unavailable">Not available</span>
 							}
 						</div>
 						<div class="card-footer bg-transparent d-flex gap-2">
-							<a asp-action="Detail" asp-route-id="@book.Id" class="btn btn-sm btn-outline-primary">Detail</a>
+							<a asp-action="Detail" asp-route-id="@book.Id" class="btn btn-sm btn-outline-primary">Details</a>
 							<a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
 							<a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-sm btn-outline-danger">Delete</a>
 						</div>
