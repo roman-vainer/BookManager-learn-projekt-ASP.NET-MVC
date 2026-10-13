@@ -1,20 +1,49 @@
-﻿@model Book
+@model Book
 
-<div class="card" style="width: 18rem;">
-    <img src="@Model.ImagePath" class="card-img-top" alt="@Model.Title">
-    <div class="card-body">
-        <h5 class="card-title">@Model.Title</h5>
-        <p class="card-text">@Model.Description</p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">@Model.Author</li>
-        <li class="list-group-item">@Model.Genre</li>
-        <li class="list-group-item">@Model.YearPublished</li>
-        <li class="list-group-item">@Model.NumberOfPages</li>
-        <li class="list-group-item">@Model.IsAvailable</li>
-    </ul>
-    <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-    </div>
+<div class="container my-4">
+	<div class="card shadow-sm">
+		<div class="row g-0">
+			<div class="col-md-4 bg-body-tertiary d-flex align-items-center justify-content-center p-3">
+				@if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+				{
+					<img src="@Model.ImagePath" class="img-fluid rounded" style="max-height: 28rem; object-fit: contain;" alt="Cover of @Model.Title" />
+				}
+				else
+				{
+					<span class="text-body-secondary">No cover available</span>
+				}
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h1 class="card-title h3">@Model.Title</h1>
+					<dl class="row mb-3">
+						<dt class="col-sm-4">Author</dt>
+						<dd class="col-sm-8">@Model.Author</dd>
+						<dt class="col-sm-4">Genre</dt>
+						<dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Genre) ? "Not specified" : Model.Genre)</dd>
+						<dt class="col-sm-4">Year published</dt>
+						<dd class="col-sm-8">@(Model.YearPublished?.ToString() ?? "Unknown")</dd>
+						<dt class="col-sm-4">Number of pages</dt>
+						<dd class="col-sm-8">@Model.NumberOfPages</dd>
+						<dt class="col-sm-4">Availability</dt>
+						<dd class="col-sm-8">
+							@if (Model.IsAvailable)
+							{
+								<span class="badge text-bg-success">Available</span>
+							}
+							else
+							{
+								<span class="badge text-bg-secondary">Not available</span>
+							}
+						</dd>
+						<dt class="col-sm-4">Description</dt>
+						<dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Description) ? "No description." : Model.Description)</dd>
+					</dl>
+					<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+					<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
+					<a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
