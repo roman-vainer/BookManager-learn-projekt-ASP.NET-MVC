@@ -19,6 +19,8 @@ namespace BookManager
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            EnsureDatabase.Migrate(app);
+
             app.Run();
         }
     }

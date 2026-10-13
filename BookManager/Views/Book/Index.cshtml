@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Book>
+
+<h1>Books</h1>
+
+<div class="row g-3">
+	@foreach (var book in Model)
+	{
+		<div class="col-md-4">
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">@book.Title</h5>
+					<h6 class="card-subtitle mb-2 text-body-secondary">@book.Author</h6>
+					<p class="card-text">@book.Genre</p>
+					<p class="card-text">@book.YearPublished</p>
+					<p class="card-text">@book.IsAvailable</p>
+					<a href="#" class="card-link">Detail</a>
+					<a href="#" class="card-link">Edit</a>
+					<a href="#" class="card-link">Delete</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>

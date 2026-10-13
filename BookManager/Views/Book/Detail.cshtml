@@ -1,0 +1,20 @@
+﻿@model Book
+
+<div class="card" style="width: 18rem;">
+    <img src="@Model.ImagePath" class="card-img-top" alt="@Model.Title">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Author</li>
+        <li class="list-group-item">@Model.Genre</li>
+        <li class="list-group-item">@Model.YearPublished</li>
+        <li class="list-group-item">@Model.NumberOfPages</li>
+        <li class="list-group-item">@Model.IsAvailable</li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+    </div>
+</div>
