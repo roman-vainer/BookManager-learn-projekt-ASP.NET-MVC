@@ -1,23 +1,47 @@
-﻿@model IEnumerable<Book>
+@model IEnumerable<Book>
 
-<h1>Books</h1>
+<div class="container my-4">
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1 class="mb-0">Books</h1>
+		<div>
+			<a asp-action="Create" class="btn btn-primary">Add Book</a>
+			<a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Home</a>
+		</div>
+	</div>
 
-<div class="row g-3">
-	@foreach (var book in Model)
+	@if (!Model.Any())
 	{
-		<div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">@book.Title</h5>
-					<h6 class="card-subtitle mb-2 text-body-secondary">@book.Author</h6>
-					<p class="card-text">@book.Genre</p>
-					<p class="card-text">@book.YearPublished</p>
-					<p class="card-text">@book.IsAvailable</p>
-					<a href="#" class="card-link">Detail</a>
-					<a href="#" class="card-link">Edit</a>
-					<a href="#" class="card-link">Delete</a>
+		<div class="alert alert-info">No books yet. Use "Add Book" to create the first one.</div>
+	}
+	else
+	{
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+			@foreach (var book in Model)
+			{
+				<div class="col">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body">
+							<h5 class="card-title">@book.Title</h5>
+							<h6 class="card-subtitle mb-2 text-body-secondary">@book.Author</h6>
+							<p class="card-text mb-1">@(string.IsNullOrWhiteSpace(book.Genre) ? "Genre not specified" : book.Genre)</p>
+							<p class="card-text mb-2">@(book.YearPublished?.ToString() ?? "Year unknown")</p>
+							@if (book.IsAvailable)
+							{
+								<span class="badge text-bg-success">Available</span>
+							}
+							else
+							{
+								<span class="badge text-bg-secondary">Not available</span>
+							}
+						</div>
+						<div class="card-footer bg-transparent d-flex gap-2">
+							<a asp-action="Detail" asp-route-id="@book.Id" class="btn btn-sm btn-outline-primary">Detail</a>
+							<a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+							<a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+						</div>
+					</div>
 				</div>
-			</div>
+			}
 		</div>
 	}
 </div>

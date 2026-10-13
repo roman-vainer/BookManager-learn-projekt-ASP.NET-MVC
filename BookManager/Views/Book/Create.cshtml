@@ -1,7 +1,7 @@
-﻿@model Book
+@model Book
 
 <div class="row justify-content-center my-5">
-	<div class="col-md-4">
+	<div class="col-md-6 col-lg-5">
 		<div class="book-form border rounded-4 p-4 bg-secondary-subtle shadow-sm">
 			<h1 class="text-center mb-4">Create Book</h1>
 
@@ -56,6 +56,7 @@
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary">Submit</button>
+				<a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
 			</form>
 		</div>
 	</div>

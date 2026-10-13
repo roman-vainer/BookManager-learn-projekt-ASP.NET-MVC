@@ -1,0 +1,14 @@
+@model Book
+
+<div class="row justify-content-center my-5">
+	<div class="col-md-6 col-lg-5">
+		<div class="border rounded-4 p-4 bg-secondary-subtle shadow-sm">
+			<h1 class="h3 text-center mb-3">Delete Book</h1>
+			<p class="text-center">Are you sure you want to delete <strong>@Model.Title</strong> by @Model.Author?</p>
+			<form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="text-center">
+				<button type="submit" class="btn btn-danger">Delete</button>
+				<a asp-action="Detail" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Cancel</a>
+			</form>
+		</div>
+	</div>
+</div>

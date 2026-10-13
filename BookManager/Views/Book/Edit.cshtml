@@ -1,0 +1,63 @@
+@model Book
+
+<div class="row justify-content-center my-5">
+	<div class="col-md-6 col-lg-5">
+		<div class="book-form border rounded-4 p-4 bg-secondary-subtle shadow-sm">
+			<h1 class="text-center mb-4">Edit Book</h1>
+
+			<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="mb-3">
+					<label asp-for="Title" class="form-label fw-bold"></label>
+					<input asp-for="Title" class="form-control rounded-4" placeholder="Enter book title" />
+					<span asp-validation-for="Title" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Author" class="form-label fw-bold"></label>
+					<input asp-for="Author" class="form-control rounded-4" placeholder="Enter author's name" />
+					<span asp-validation-for="Author" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Genre" class="form-label fw-bold"></label>
+					<input asp-for="Genre" class="form-control rounded-4" placeholder="Enter book genre" />
+				</div>
+
+				<div class="row g-3 mb-3">
+					<div class="col-6">
+						<label asp-for="YearPublished" class="form-label fw-bold"></label>
+						<input asp-for="YearPublished" type="number" class="form-control rounded-4" placeholder="e.g. 2008" />
+						<span asp-validation-for="YearPublished" class="text-danger"></span>
+					</div>
+
+					<div class="col-6">
+						<label asp-for="NumberOfPages" class="form-label fw-bold"></label>
+						<input asp-for="NumberOfPages" class="form-control rounded-4" placeholder="Enter number of pages" />
+						<span asp-validation-for="NumberOfPages" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Description" class="form-label fw-bold"></label>
+					<textarea asp-for="Description" class="form-control rounded-4" placeholder="Enter short book description"></textarea>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ImagePath" class="form-label fw-bold"></label>
+					<input asp-for="ImagePath" class="form-control rounded-4" placeholder="e.g. /images/name.jpg" />
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="IsAvailable" class="form-label fw-bold"></label>
+					<select asp-for="IsAvailable" class="form-select rounded-4">
+						<option value="true">Available</option>
+						<option value="false">Not available</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a asp-action="Detail" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Cancel</a>
+			</form>
+		</div>
+	</div>
+</div>
