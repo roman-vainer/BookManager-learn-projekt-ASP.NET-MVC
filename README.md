@@ -34,12 +34,24 @@ dotnet run --project BookManager/BookManager.csproj
 
 3. Open the shown URL, then use Home -> View Books.
 
-## Manual Verification Steps (with at least 5 records)
+## Verification Results
 
-1. Create five distinct records from `Books -> Add Book`.
-2. Verify in `Books` overview that cards show title, author, genre, year, availability and action buttons.
-3. Open Details for each record and verify all fields plus image/fallback behavior.
-4. Edit one record and verify values are prepopulated and persisted.
-5. Delete one record and verify confirmation page and POST deletion flow.
-6. Submit invalid Create/Edit input (`Title` empty, `Author` empty, `NumberOfPages = 0`) and verify validation errors.
-7. Validate unknown IDs by opening a nonexisting `Book/Detail/{id}` and confirming not found behavior.
+- `dotnet restore BookManager/BookManager.csproj` — passed.
+- `dotnet build BookManager/BookManager.csproj --no-restore` — passed with 0 warnings and 0 errors.
+- No automated test project is included.
+- Manual UI and database checks were not run: this environment is Linux and does not have SQL Server LocalDB available. The five-record CRUD flow, validation, unknown IDs, cover images and fallback, navigation, and LocalDB persistence therefore remain unverified here.
+
+## Local Manual Verification Steps (with at least 5 records)
+
+Run these checks on Windows with SQL Server LocalDB installed and available:
+
+1. Start the app using the instructions above and navigate from Home to `Books`.
+2. Create five distinct records from `Books -> Add Book`.
+3. Verify navigation between Home, the books overview, and each book's Details, Edit, and Delete pages.
+4. Verify the overview cards show title, author, genre, year, availability, and action buttons.
+5. Open Details for each record and verify all fields, a working cover image, and the fallback for a missing or broken image.
+6. Edit one record and verify its values are prepopulated and the changes persist after reloading.
+7. Delete one record and verify the confirmation page and POST deletion flow.
+8. Submit invalid Create/Edit input (`Title` empty, `Author` empty, `NumberOfPages = 0`) and verify validation errors.
+9. Open a nonexisting `Book/Detail/{id}` and confirm not found behavior.
+10. Restart the app and verify the remaining records are still stored in LocalDB.
